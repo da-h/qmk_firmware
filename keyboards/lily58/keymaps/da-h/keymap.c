@@ -293,19 +293,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef ENCODER_ENABLE
 void encoder_update_user(uint8_t index, bool clockwise) {
   if (index == 0) { // Encoder on master side
-    if(IS_LAYER_ON(_RAISE)) { // on Raise layer
+    if(IS_LAYER_ON(_LOWER)) { // on Raise layer
       // Cursor control
       if (clockwise) {
-          tap_code(KC_MNXT);
-      } else {
           tap_code(KC_MPRV);
+      } else {
+          tap_code(KC_MNXT);
       }
     }
+    else if(IS_LAYER_ON(_RAISE)) { // on Raise layer
+      // Cursor control
+      if (clockwise) {
+          tap_code(KC_RIGHT);
+      } else {
+          tap_code(KC_LEFT);
+      }
+    }
+
     else {
       if (clockwise) {
-          tap_code(KC_VOLU);
-      } else {
           tap_code(KC_VOLD);
+      } else {
+          tap_code(KC_VOLU);
       }
     }
   }
@@ -313,16 +322,29 @@ void encoder_update_user(uint8_t index, bool clockwise) {
     if(IS_LAYER_ON(_LOWER)) { // on Lower layer
       //
       if (clockwise) {
-          tap_code(KC_RIGHT);
+            tap_code(KC_PGUP);
       } else {
-          tap_code(KC_LEFT);
+            tap_code(KC_PGDOWN);
       }
+    }
+    else if(IS_LAYER_ON(_RAISE)) { // on Lower layer
+        if (clockwise) {
+            tap_code(KC_WH_D);
+            tap_code(KC_WH_D);
+            tap_code(KC_WH_D);
+            tap_code(KC_WH_D);
+        } else {
+            tap_code(KC_WH_U);
+            tap_code(KC_WH_U);
+            tap_code(KC_WH_U);
+            tap_code(KC_WH_U);
+        }
     }
     else {
       if (clockwise) {
-          tap_code(KC_DOWN);
+          tap_code(KC_WH_D);
       } else {
-          tap_code(KC_UP);
+          tap_code(KC_WH_U);
       }
     }
   }
