@@ -507,6 +507,7 @@ xkb_symbols "neo_base" {
     // Space key & Enter
     // --------------------------------------------------------------
     key <SPCE> { [ space,                   space,                   space,                   nobreakspace,            KP_0,                    KP_0,                    U202F,                   NoSymbol                 ] };
+    key <RTRN> { [ Return,                   Return,                   Return,                   Return,            KP_0,                    KP_0,                    Return,                   NoSymbol                 ] };
 
 
     // Keypad-keys
