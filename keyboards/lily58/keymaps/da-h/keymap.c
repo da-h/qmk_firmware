@@ -31,6 +31,32 @@ enum layers {
 #define RAISE MO(_RAISE)
 #define LOWER MO(_LOWER)
 
+
+enum combos {
+    LShiftRMod3_ssharp,
+    RShiftRMod3_ssharp,
+    LMod3RMod3_Mod3ssharp,
+};
+const uint16_t PROGMEM de_adia[] = {KC_NUHS, KC_LSFT, COMBO_END};
+const uint16_t PROGMEM de_adia2[] = {KC_NUHS, KC_RSFT, COMBO_END};
+const uint16_t PROGMEM kc_at[] = {KC_NUHS, KC_CAPS, COMBO_END};
+combo_t key_combos[COMBO_COUNT] = {
+    [LShiftRMod3_ssharp] = COMBO(de_adia, DE_ADIA),
+    [RShiftRMod3_ssharp] = COMBO(de_adia2, DE_ADIA),
+    [LMod3RMod3_Mod3ssharp] = COMBO_ACTION(kc_at)
+};
+void process_combo_event(uint16_t combo_index, bool pressed) {
+    switch(combo_index) {
+        case LMod3RMod3_Mod3ssharp:
+            if (pressed) {
+                register_code(KC_CAPS);
+                tap_code(DE_ADIA);
+                unregister_code(KC_CAPS);
+            }
+            break;
+    }
+}
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* QWERTY
