@@ -96,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   `----------------------------'           '------''--------------------'
  */
 [_LOWER] = LAYOUT(
-  KC__MUTE, KC_MPLY, KC_MPRV, KC_MNXT, _______, _______,                   _______, _______, _______,_______, _______, _______,
+  _______, _______, _______, _______, _______, _______,                     _______, _______, _______, _______, _______, _______,
   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                     KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
   KC_GRV, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_TILD,
   _______, _______, _______, _______, _______, _______, _______, _______, XXXXXXX, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE,
@@ -118,7 +118,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_RAISE] = LAYOUT(
-  _______, _______, _______, _______, _______, _______,                     _______, _______, _______, _______, _______, _______,
+  KC__MUTE, KC_MPLY, KC_MPRV, KC_MNXT, _______, _______,                   _______, _______, _______,_______, _______, _______,
   KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                        KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
   KC_F1,  KC_F2,    KC_F3,   KC_F4,   KC_F5,   KC_F6,                       XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX,
   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,   _______, _______,  KC_PLUS, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS,
@@ -318,61 +318,81 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 // Rotary encoder related code
 #ifdef ENCODER_ENABLE
 void encoder_update_user(uint8_t index, bool clockwise) {
-  if (index == 0) { // Encoder on master side
-    if(IS_LAYER_ON(_LOWER)) { // on Raise layer
-      // Cursor control
-      if (clockwise) {
-          tap_code(KC_MPRV);
-      } else {
-          tap_code(KC_MNXT);
-      }
-    }
-    else if(IS_LAYER_ON(_RAISE)) { // on Raise layer
-      // Cursor control
-      if (clockwise) {
-          tap_code(KC_RIGHT);
-      } else {
-          tap_code(KC_LEFT);
-      }
+
+    // master
+    if (index == 0) { // Encoder on master side
+
+        if(IS_LAYER_ON(_LOWER)) {
+            //
+            if (clockwise) {
+                tap_code(KC_PGDOWN);
+            } else {
+                tap_code(KC_PGUP);
+            }
+        }
+        else if(IS_LAYER_ON(_RAISE)) { // on Lower layer
+            if (clockwise) {
+                tap_code(KC_WH_D);
+                tap_code(KC_WH_D);
+                tap_code(KC_WH_D);
+                tap_code(KC_WH_D);
+            } else {
+                tap_code(KC_WH_U);
+                tap_code(KC_WH_U);
+                tap_code(KC_WH_U);
+                tap_code(KC_WH_U);
+            }
+        }
+        else {
+            if (clockwise) {
+                tap_code(KC_WH_D);
+            } else {
+                tap_code(KC_WH_U);
+            }
+        }
+
     }
 
-    else {
-      if (clockwise) {
-          tap_code(KC_VOLD);
-      } else {
-          tap_code(KC_VOLU);
-      }
-    }
-  }
-  else if (index == 1) { // Encoder on slave side
-    if(IS_LAYER_ON(_LOWER)) { // on Lower layer
-      //
-      if (clockwise) {
-            tap_code(KC_PGUP);
-      } else {
-            tap_code(KC_PGDOWN);
-      }
-    }
-    else if(IS_LAYER_ON(_RAISE)) { // on Lower layer
-        if (clockwise) {
-            tap_code(KC_WH_D);
-            tap_code(KC_WH_D);
-            tap_code(KC_WH_D);
-            tap_code(KC_WH_D);
-        } else {
-            tap_code(KC_WH_U);
-            tap_code(KC_WH_U);
-            tap_code(KC_WH_U);
-            tap_code(KC_WH_U);
+    // slave
+    else if (index == 1) {
+
+        // LGUI + Rotary = Volume
+        if (get_mods() & MOD_BIT(KC_LGUI)) {
+            unregister_code(KC_LGUI);
+            if (clockwise) {
+                tap_code(KC__VOLUP);
+            } else {
+                tap_code(KC__VOLDOWN);
+            }
+            register_code(KC_LGUI);
         }
+
+        else if(IS_LAYER_ON(_LOWER)) {
+            // Cursor control
+            if (clockwise) {
+                tap_code(KC_UP);
+            } else {
+                tap_code(KC_DOWN);
+            }
+        }
+
+        else if(IS_LAYER_ON(_RAISE)) { // on Raise layer
+            // Cursor control
+            if (clockwise) {
+                tap_code(KC_UNDO);
+            } else {
+                tap_code(KC_AGAIN);
+            }
+        }
+
+        else {
+            if (clockwise) {
+                tap_code(KC_RGHT);
+            } else {
+                tap_code(KC_LEFT);
+            }
+        }
+
     }
-    else {
-      if (clockwise) {
-          tap_code(KC_WH_D);
-      } else {
-          tap_code(KC_WH_U);
-      }
-    }
-  }
 }
 #endif

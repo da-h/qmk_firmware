@@ -39,3 +39,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define NO_USB_STARTUP_CHECK
 
 #define COMBO_COUNT 3
+
+#define ENCODER_DIRECTION_FLIP
