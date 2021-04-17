@@ -330,9 +330,9 @@ void encoder_update_user(uint8_t index, bool clockwise) {
         else if(IS_LAYER_ON(_LOWER)) {
             // Cursor control
             if (clockwise) {
-                tap_code(KC_UP);
-            } else {
                 tap_code(KC_DOWN);
+            } else {
+                tap_code(KC_UP);
             }
         }
 
