@@ -2,8 +2,8 @@
     "manufacturer": "David Hartmann & Daniel Franzen",
     "keyboard_name": "backontrack44",
     "maintainer": "da-h",
-    "bootloader": "atmel-dfu",
-    //"bootloader": "caterina",
+    //"bootloader": "atmel-dfu",
+    "bootloader": "caterina",
     "diode_direction": "COL2ROW",
     "features": {
         "bootmagic": false,
