@@ -27,9 +27,6 @@ xkb_symbols "basic" {
     key <BKSL>	{ [numbersign, apostrophe, rightsinglequotemark,   dead_breve ]	};
     key <AB01>	{ [         y,          Y,       guillemotright,    U203A 	] };
     key <AB02>	{ [         x,          X,        guillemotleft,    U2039 	] };
-    key <AB04>	{ [         v,          V,   doublelowquotemark, singlelowquotemark ]	};
-    key <AB05>	{ [         b,          B,  leftdoublequotemark, leftsinglequotemark ] };
-    key <AB06>	{ [         n,          N, rightdoublequotemark, rightsinglequotemark ]	};
     key <AB08>  { [     comma,  semicolon,       periodcentered,     multiply	] };
     key <AB09>	{ [    period,      colon,                U2026,     division 	] };
     key <AB10>	{ [     minus, underscore,               endash,     emdash	] };
@@ -518,7 +515,7 @@ xkb_symbols "neo_base" {
 
     // Topmost row
     // --------------------------------------------------------------
-    key <KPDV> { [ KP_Divide,               KP_Divide,               division,                U2300,                   U2215,                   NoSymbol,                U2223,                   NoSymbol                 ] };
+    key <KPDV> { [ KP_Divide,               KP_Divide,               division,                U2300,                   U2044,                   NoSymbol,                U2223,                   NoSymbol                 ] };
     key <KPMU> { [ KP_Multiply,             KP_Multiply,             U22C5,                   U2299,                   multiply,                NoSymbol,                U2297,                   NoSymbol                 ] };
     key <KPSU> { [ KP_Subtract,             KP_Subtract,             U2212,                   U2296,                   U2216,                   NoSymbol,                U2238,                   NoSymbol                 ] };
 
@@ -669,7 +666,7 @@ xkb_symbols "qwerty" {
     name[Group1] = "German (QWERTY)";
 
     key <AB01>	{ [         z,          Z,     leftarrow,         yen ]	};
-    key <AD06>	{ [         y,          Y, guillemotleft,        less ]	};
+    key <AD06>	{ [         y,          Y, guillemotleft,       U2039 ]	};
 };
 
 // layout for Russian letters on an german keyboard
@@ -908,7 +905,7 @@ xkb_symbols "hu" {
     include "de(basic)"
     name[Group1]="German (with Hungarian letters, no dead keys)";
 
-    key <AB01> { [         y,          Y,        guillemotleft,         less ] };
+    key <AB01> { [         y,          Y,        guillemotleft,        U2039 ] };
     key <AC10> { [odiaeresis, Odiaeresis,               eacute,       Eacute ] };
     key <AC11> { [adiaeresis, Adiaeresis,               aacute,        Aacute] };
     key <AD03> { [         e,          E,             EuroSign,     EuroSign ] };
@@ -1196,7 +1193,7 @@ xkb_symbols "neo_qwerty" {
 };
 
 partial alphanumeric_keys
-    xkb_symbols "lld" {
+xkb_symbols "lld" {
     include "de(basic)"
     name[Group1] = "German (Ladin)";
 
