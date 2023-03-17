@@ -3,6 +3,13 @@
 
 #pragma once
 
+
+/* -------- */
+/* Features */
+/* -------- */
+
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD  
+
 /*
  * Feature disable options
  *  These options are also useful to firmware size reduction.
@@ -18,4 +25,7 @@
 //#define NO_ACTION_LAYER
 //#define NO_ACTION_TAPPING
 //#define NO_ACTION_ONESHOT
+
+
+
 
