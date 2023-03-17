@@ -8,6 +8,7 @@
 
 enum layers {
     _ADNW,
+    _SHIFT,
     _PROG,
     _NAVI,
     _SPECIAL,
@@ -16,6 +17,8 @@ enum layers {
 
 #define M_PROG MO(_PROG)
 #define M_NAVI MO(_NAVI)
+#define M_LSFT LM(_SHIFT, MOD_LSFT)
+#define M_RSFT LM(_SHIFT, MOD_RSFT)
 
 // define M_SPECIAL = M_NAVI + M_PROG
 layer_state_t layer_state_set_user(layer_state_t state) {
@@ -47,9 +50,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_ADNW] = LAYOUT_split_3x6_4_2(
         KC_TAB,      DE_K,       DE_U,       DE_UDIA,    DE_DOT,     DE_ADIA,                DE_V,       DE_G,       DE_C,    DE_L,    DE_J,    DE_F,
         M_PROG,      DE_H,       DE_I,       DE_E,       DE_A,       DE_O,                   DE_D,       DE_T,       DE_R,    DE_N,    DE_S,    M_PROG,
-        KC_LSFT,     DE_X,       DE_Y,       DE_ODIA,    DE_COMM,    DE_Q,                   DE_B,       DE_P,       DE_W,    DE_M,    DE_Z,    KC_RSFT,
+        M_LSFT,      DE_X,       DE_Y,       DE_ODIA,    DE_COMM,    DE_Q,                   DE_B,       DE_P,       DE_W,    DE_M,    DE_Z,    M_RSFT,
                                  KC_LCTL,    KC_LGUI,    M_NAVI,     KC_SPC,                 KC_ENT,     M_NAVI,     M_PROG,  KC_LALT,
                                                          KC_1,       KC_2,                   KC_3,       KC_4
+    ),
+
+    [_SHIFT] = LAYOUT_split_3x6_4_2(
+        _______,     _______,    _______,    _______,    _______,    _______,                _______,    _______,    _______, _______,  _______, _______,
+        _______,     _______,    _______,    _______,    _______,    _______,                _______,    _______,    _______, _______,  _______, DE_SS,
+        _______,     _______,    _______,    _______,    _______,    _______,                _______,    _______,    _______, _______,  _______, _______,
+                                 _______,    _______,    _______,    _______,                _______,    _______,    _______, _______,
+                                                         _______,    _______,                _______,    _______
     ),
 
     [_PROG] = LAYOUT_split_3x6_4_2(
