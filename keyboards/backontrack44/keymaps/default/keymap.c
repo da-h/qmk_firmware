@@ -25,6 +25,18 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return update_tri_layer_state(state, _NAVI, _PROG, _SPECIAL);
 }
 
+
+// key overrides
+// shift + m_prog = ß
+const key_override_t de_ss_override = ko_make_basic(MOD_MASK_SHIFT, DE_SS, DE_SS);
+
+// This globally defines all key overrides to be used
+const key_override_t **key_overrides = (const key_override_t *[]){
+    &de_ss_override,
+    NULL // Null terminate the array of overrides!
+};
+
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      /*
       * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
