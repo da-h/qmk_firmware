@@ -74,15 +74,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_PROG] = LAYOUT_split_3x6_4_2(
-        KC_ESC,      _______,    DE_UNDS,       DE_LBRC,    DE_RBRC,    DE_CIRC,                DE_EXLM,    DE_LABK,    DE_RABK, DE_EQL,     DE_AMPR, KC_BSPC,
-        _______,     DE_BSLS,    DE_SLSH,       DE_LCBR,    DE_RCBR,    DE_ASTR,                DE_QUES,    DE_LPRN,    DE_RPRN, DE_MINS,    DE_COLN, DE_AT,
-        _______,     DE_HASH,    DE_DLR,        DE_PIPE,    DE_TILD,    DE_GRV,                 DE_PLUS,    DE_PERC,    DE_DQUO, DE_QUOT,    DE_SCLN, _______,
+        QK_LEAD,      _______,    DE_UNDS,       DE_LBRC,    DE_RBRC,    DE_CIRC,                DE_EXLM,    DE_LABK,    DE_RABK, DE_EQL,    DE_AMPR,  _______,
+        _______,     DE_BSLS,    DE_SLSH,       DE_LCBR,    DE_RCBR,    DE_ASTR,                DE_QUES,    DE_LPRN,    DE_RPRN, DE_MINS,    DE_COLN,  DE_AT,
+        _______,     DE_HASH,    DE_DLR,        DE_PIPE,    DE_TILD,    DE_GRV,                 DE_PLUS,    DE_PERC,    DE_DQUO, DE_QUOT,    DE_SCLN,  _______,
                                  _______,       _______,    _______,    _______,                _______,    _______,    _______, _______,
                                                             _______,    _______,                _______,    _______
     ),
 
     [_NAVI] = LAYOUT_split_3x6_4_2(
-        KC_ESC,      KC_PAGE_UP, KC_BSPC,    KC_UP,      KC_DEL,     KC_PAGE_DOWN,           _______,    KC_7,       KC_8,    KC_9,    KC_F23, KC_BSPC,
+        KC_ESC,      KC_PAGE_UP, KC_BSPC,   KC_UP,      KC_DEL,     KC_PAGE_DOWN,           _______,    KC_7,       KC_8,    KC_9,     KC_F23, KC_BSPC,
         _______,     KC_HOME,    KC_LEFT,    KC_DOWN,    KC_RIGHT,   KC_END,                 _______,    KC_4,       KC_5,    KC_6,    KC_F22, _______,
         _______,     KC_ESC,     KC_TAB,     KC_INSERT,  KC_ENT,     KC_UNDO,                _______,    KC_1,       KC_2,    KC_3,    KC_F21, _______,
                                  _______,    _______,    _______,    _______,                KC_0,       _______,    _______, _______,
@@ -122,3 +122,15 @@ bool caps_word_press_user(uint16_t keycode) {
 }
 
 
+void leader_start_user(void) {
+    SEND_STRING("...");
+}
+void leader_end_user(void) {
+    tap_code16(KC_BSPC);
+    tap_code16(KC_BSPC);
+    tap_code16(KC_BSPC);
+    if (leader_sequence_one_key(KC_F)) {
+        // Leader, f => Types the below string
+        SEND_STRING("QMK is awesome.");
+    }
+}
