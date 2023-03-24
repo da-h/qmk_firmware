@@ -4,10 +4,15 @@
 #pragma once
 
 
+#define RGB_DI_PIN D3
+#define RGBLED_SPLIT { 50, 50 }
+#define RGBLED_NUM 100
+#define RGBLIGHT_SPLIT
+// #define RGBLIGHT_LIMIT_VAL 120
+
 /* -------- */
 /* Features */
 /* -------- */
-
 #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD  
 
 /*
