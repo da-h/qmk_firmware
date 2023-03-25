@@ -92,7 +92,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_SPECIAL] = LAYOUT_split_3x6_4_2(
         KC_MUTE,     KC_MPLY,    KC_MPRV,    KC_MNXT,    KC_VOLD,    KC_VOLU,                _______,    KC_F7,      KC_F8,   KC_F9,    KC_F13,   _______,
         _______,     _______,    DM_REC2,    DM_PLY2,    DM_PLY1,    DM_REC1,                _______,    KC_F4,      KC_F5,   KC_F6,    KC_F12,   _______,
-        _______,     _______,    _______,    _______,    _______,    _______,                _______,    KC_F1,      KC_F2,   KC_F3,    KC_F11,   _______,
+        _______,     RGB_VAI,    RGB_SAI,    RGB_HUI,    RGB_MOD,    RGB_TOG,                _______,    KC_F1,      KC_F2,   KC_F3,    KC_F11,   _______,
                                  _______,    _______,    _______,    _______,                _______,    _______,    _______, _______,
                                                          _______,    _______,                _______,    _______
     )
