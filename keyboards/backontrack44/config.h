@@ -5,8 +5,8 @@
 
 
 #define RGB_DI_PIN D3
-#define RGBLED_SPLIT { 50, 50 }
-#define RGBLED_NUM 100
+#define RGBLED_SPLIT { 28, 28 }
+#define RGBLED_NUM 56
 #define RGBLIGHT_SPLIT
 #define RGBLIGHT_LIMIT_VAL 221
 
