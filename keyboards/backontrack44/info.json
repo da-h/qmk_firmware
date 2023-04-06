@@ -21,6 +21,11 @@
         "enabled": true,
         "soft_serial_pin": "D2"
     },
+    "pointing_device": {
+        "enabled": true,
+        "driver": "cirque_pinnacle_i2c",
+        "rotation": 90
+    },
     "processor": "atmega32u4",
     "url": "",
     "usb": {
